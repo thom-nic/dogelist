@@ -1,0 +1,44 @@
+!!! 5
+html(lang='en')
+head
+    meta(charset='utf-8')
+    title Flashcards
+    meta(name='description', content='#{ site_description }')
+    // Add favicon.ico and stylesheets here 
+    link( href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css", 
+      rel="stylesheet")
+    link( href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.min.css", 
+      rel="stylesheet")
+    !=css('custom')
+
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top( role='navigation' )
+      .navbar-header
+        a.navbar-brand( href="/" ) #{ site_title }
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          block nav
+          li
+            a
+              i.icon-spinner.icon-large.icon-spin( style='display:none' )
+
+        ul.nav.navbar-nav.navbar-right
+          block nav-right
+        
+    .container.main
+
+      .row
+        .col-md-12
+          ul#cards
+          
+
+      button.btn#ping Ping
+      
+
+    script( src='/static/js/require-config.js', type='text/javascript' )
+    script( src='/static/js/lib/require.js', data-main='main', type='text/javascript' )
+
+    //script( src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js", 
+      data-main='main', type='text/javascript' )
+    

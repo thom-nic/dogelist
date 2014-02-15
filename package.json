@@ -1,0 +1,55 @@
+{
+  "name": "dogelist",
+  "version": "0.0.1",
+  "description": "dogelist",
+  "homepage": "http://github.com/tomstrummer/dogelist",
+  "main": "server.coffee",
+  "dependencies": {
+    "express": "3.4.6",
+    "jade": "0.35.0",
+    "underscore": "~1.3.1",
+    "less": "1.3.3",
+    "path": "0.4.9",
+    "redis": "0.8.6",
+    "async": "~0.2.9",
+    "socket.io": "0.9.13",
+    "connect-flash": "0.1.0",
+    "connect-redis": "1.4.5",
+    "connect-assets": "~2.3.3",
+    "datejs": "0.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "~0.7.10",
+    "coffee-script": "1.7.1",
+    "coffeelint": "1.0.6",
+    "coffeelint-variable-scope": "~0.0.1",
+    "coffee-coverage": "0.3.0",
+    "mocha": "~1.14.0",
+    "sinon": "1.7.3",
+    "supertest": "0.8.1",
+    "chai": "1.8.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon",
+    "coverage": "COVERAGE=true mocha --reporter html-cov > reports/coverage.html",
+    "lint": "coffeelint lib assets/js"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tomstrummer/project.git"
+  },
+  "bugs": {
+    "url": "http://github.com/project/issues"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Thom Nichols",
+    "email": "tnichols@enernoc.com",
+    "url": ""
+  },
+  "license": "not BSD"
+}

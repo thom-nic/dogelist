@@ -1,0 +1,5 @@
+--compilers coffee:coffee-script/register
+--recursive
+--ui tdd
+--timeout 6000
+-R spec
