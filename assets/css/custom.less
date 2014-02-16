@@ -1,3 +1,10 @@
+
+@import "_animation";
+
+@navbar-start-color: #cc3e74;
+@navbar-end-color: #cc315B;
+
+
 .partial-container {
   margin-top: 10px;
 }
@@ -11,8 +18,8 @@
 }
 
 .navbar-inverse {
-  background-color: #003e74;
-  background-image: linear-gradient(bottom, #003E74 5%, #00315B 77%);
+  background-color: @navbar-start-color;
+  background-image: linear-gradient(to bottom, @navbar-start-color 5%, @navbar-end-color 77%);
 }
 
 .navbar-header a.navbar-brand {
@@ -20,6 +27,10 @@
   color: #eee;
   font-weight: normal;
   font-size: 18px;
+}
+
+.navbar-inverse .navbar-nav a {
+  color: #ccc;
 }
 
 
@@ -44,59 +55,4 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-}
-
-/* Rules for cubism.js: */
-
-#chart {
-	font-size: .8em;
-	border-bottom: 1px solid #999;
-	position: relative; /*needed for cubism's 'rule' (vertical line) */
-}
-
-.horizon, .comparison {
-	border-top: 1px solid #999;
-	overflow: hidden;
-  position: relative;
-
-  canvas { display:block }
-
-  .title, .value {
-    position: absolute;
-    top: 0;
-    margin:6px 8px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    line-height:40px;
-  }
-  .value.change { top: 10px }   /* for comparison */
-  .title { left: 0 }
-  .value { right: 0 }
-}
-
-.axis {
-  color: #999;
-
-  path, line {
-    fill: none;
-    shape-rendering: crispedges;
-    stroke: #999;
-  }
-
-  path { display: none; }
-  line {
-    shape-rendering: crispedges;
-    stroke: #999;
-  }
-}
-
-.line {
-    background: none repeat scroll 0 0 #000;
-    opacity: 0.2;
-    z-index: 2;
-}
-
-/* End cubism rules */
-
-.nav-list > li {
-  font-size: 20px;
 }
