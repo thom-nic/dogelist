@@ -28,7 +28,7 @@ app.configure ->
       maxAge: 86400000
     }
   })
-  app.use express.static(path.join(basedir, "static"))
+  app.use '/static', express.static(path.join(basedir, "static"))
   app.use app.router
 
   app.use (err, req, res, next) ->
