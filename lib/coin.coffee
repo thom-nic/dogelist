@@ -15,12 +15,14 @@ class Coin
   # Currently 1 user request every 60 seconds will have to wait for 
   # coinbase to return the result.
   ###
-  usd_to_btc: (cb) ->
+  exchange_rate: (from_currency, to_currency, cb) ->
 
     @request.get_cache_first COINBASE_EXCHANGE_URL, (data) ->
       return cb() unless data # might be null, let the caller handle it
       cb
-        timestamp: data.timestamp,
-        rate: Number(data.data.usd_to_btc)
+        from: from_currency
+        to: to_currency
+        timestamp: data.timestamp
+        rate: Number(data.data["#{from_currency}_to_#{to_currency}"])
 
 module.exports = Coin

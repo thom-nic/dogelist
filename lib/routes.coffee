@@ -7,12 +7,15 @@ init = (app, config, coin, craigslist) ->
     res.render 'index', config.layout_vars
 
 
-  app.get '/exchange', (req, res) ->
-    coin.usd_to_btc (rate) ->
-      return res.json 503, {error: {message : "Exchange rate unavailable"} } unless rate
+  app.get '/exchange/:from_currency/:to_currency', (req, res) ->
+    coin.exchange_rate(
+      req.params.from_currency,
+      req.params.to_currency,
+      (rate) ->
+        return res.json 503, {error: {message : "Exchange rate unavailable"} } unless rate
 
-      res.json rate
-
+        res.json rate
+    )
 
   app.get '/search/:location/:category', (req, res) ->
     craigslist.search(

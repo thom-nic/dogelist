@@ -8,8 +8,14 @@ define ["marionette"], (Marionette) ->
   # implementation like so: Elbow.ItemView.prototype.onRender.call(this)
   ###
   _new_render = ->
-    @$el = @$el.children()
+    if @$el.parent().length
+      # console.log "re-render", @$el
+      @$el = @$el.children()
+      @$el.unwrap()
+    else
+      @$el = @$el.children()
     @setElement @$el
+
 
   Layout = Marionette.Layout.extend(onRender: _new_render)
   ItemView = Marionette.ItemView.extend(onRender: _new_render)

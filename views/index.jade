@@ -1,6 +1,6 @@
 !!! 5
 html(lang='en')
-head
+  head
     meta(charset='utf-8')
     title #{ site_title }
     meta(name='description', content='#{ site_description }')
@@ -36,9 +36,9 @@ head
 
     //- Templates
 
-    script#searchTmpl(type='text/html')
-      ul
-        a(href='#', title='{ timestamp }') { rate }
+    script#exchangeTmpl(type='text/html')
+      li
+        a.price_fade(href='#', title='{ timestamp }') USD to BTC: { rate }
 
 
     script#searchTmpl(type='text/html')
@@ -53,6 +53,7 @@ head
     //- This precompiles the assets since they're being loaded via require.js
     //
       !=js('main')
+      !=js('elbow')
       !=js('router')
       !=js('exchange')
       !=js('craigslist')
