@@ -2,12 +2,12 @@
 html(lang='en')
 head
     meta(charset='utf-8')
-    title Flashcards
+    title #{ site_title }
     meta(name='description', content='#{ site_description }')
     // Add favicon.ico and stylesheets here 
     link( href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css", 
       rel="stylesheet")
-    link( href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.min.css", 
+    link( href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css", 
       rel="stylesheet")
     !=css('custom')
 
@@ -21,24 +21,43 @@ head
           block nav
           li
             a
-              i.icon-spinner.icon-large.icon-spin( style='display:none' )
+              i.fa.fa-cog.fa-spin( style='display:none' )
 
-        ul.nav.navbar-nav.navbar-right
-          block nav-right
+        ul#exchangeRegion.nav.navbar-nav.navbar-right
         
     .container.main
 
       .row
-        .col-md-12
-          ul#cards
-          
+        #searchFormRegion.col-md-12
 
-      button.btn#ping Ping
-      
+      .row
+        #searchResultsRegion.col-md-12
 
-    script( src='/static/js/require-config.js', type='text/javascript' )
+
+    //- Templates
+
+    script#searchTmpl(type='text/html')
+      ul
+        a(href='#', title='{ timestamp }') { rate }
+
+
+    script#searchTmpl(type='text/html')
+      form#searchForm.form-inline(action='search')
+        input( type='text', name='search', placeholder='Search')
+        input( type='text', name='region', placeholder='Region')
+        input( type='text', name='category', placeholder='Category')
+        button#searchBtn.btn Search!
+
+    
+
+    //- This precompiles the assets since they're being loaded via require.js
+    //
+      !=js('main')
+      !=js('router')
+      !=js('exchange')
+      !=js('craigslist')
+
+
+    !=js( 'require-config' )
     script( src='/static/js/lib/require.js', data-main='main', type='text/javascript' )
-
-    //script( src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js", 
-      data-main='main', type='text/javascript' )
     

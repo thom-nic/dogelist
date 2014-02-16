@@ -1,12 +1,11 @@
-define [ "jquery",
-         "backbone",
-         "search",
-         "list",
-         "exchange" ],
-         ($, Backbone, search, list, exchange) ->
+define [
+  "jquery",
+  "backbone",
+  "craigslist",
+  "exchange" ],
+($, Backbone, craigslist, exchange) ->
 
-  router = Backbone.Router.extend({
-
+  router = Backbone.Router.extend(
     routes:
       "" : "home",
       "search/:category/:query" : "search"
@@ -16,7 +15,6 @@ define [ "jquery",
 
     search: (category, query) ->
       console.log "Search #{category} #{query}"
+  )
 
-  })
-
-  return router.Router
+  return router
