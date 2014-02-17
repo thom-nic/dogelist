@@ -51,13 +51,15 @@ html(lang='en')
 
     script#searchTmpl(type='text/html')
       form#searchForm.form-inline(action='/search', role='form')
-        .form-group
+        .form-group.col-xs-4
+          label.sr-only(for="query") Search query
           input.form-control( type='text', name='query', placeholder='Search', value='Single speed')
-        .form-group
+        .form-group.col-xs-2
+          label.sr-only(for="region") Region
           // FIXME replace w/ select option
-
           input.form-control( type='text', name='region', placeholder='Region', value='providence')
-        .form-group
+        .form-group.col-xs-2
+          label.sr-only(for="category") Listing category
           // FIXME replace w/ select option
           input.form-control( type='text', name='category', placeholder='Category', value='bik')
         input#searchBtn.btn( type='submit', value='Search!')
