@@ -22,12 +22,19 @@ define [
       template: '#exchangeTmpl'
       tagName: 'ul'
 
+      modelEvents:
+        "change": "render rateChange"
+
       initialize: (opts) ->
         unless opts?.model
           @model = new Rate()
-          @model.on 'change', @render
+#          @model.on 'change', @render
           @model.fetch()
         console.log "init", @$el
+
+      rateChange: (model) ->
+        console.log "Rate change event", model
+        @trigger "rate:change", model
 
       onRender: () ->
         Elbow.ItemView::onRender.call this

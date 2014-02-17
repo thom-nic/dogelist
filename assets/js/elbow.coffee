@@ -16,23 +16,28 @@ define ["marionette"], (Marionette) ->
       @$el = @$el.children()
     @setElement @$el
 
-
-  Layout = Marionette.Layout.extend(onRender: _new_render)
-  ItemView = Marionette.ItemView.extend(onRender: _new_render)
-  CompositeView = Marionette.CompositeView.extend(
-    onRender: _new_render
-    
-    ###
-    # Instead of overriding `appendHtml`, specify `appendSelector` 
-    # which defines where in this view's DOM the item will be inserted.
-    ###
-    appendSelector: null
-
-    appendHtml: (collectionView, itemView) ->
+  ###
+  # Instead of using `appendHtml` in a CollectionView, specify 
+  # `appendSelector` which defines where in this view's DOM the 
+  # item will be inserted.
+  ###
+  _appendHtml = (collectionView, itemView) ->
       if @appendSelector
         collectionView.$(@appendSelector).append itemView.el
       else
         collectionView.$el.append itemView.el
+
+  Layout = Marionette.Layout.extend(onRender: _new_render)
+  ItemView = Marionette.ItemView.extend(onRender: _new_render)
+  CollectionView = Marionette.CollectionView.extend(
+    onRender: _new_render
+    appendHtml: _appendHtml
+    appendSelector: null
+  )
+  CompositeView = Marionette.CompositeView.extend(
+    onRender: _new_render
+    appendHtml: _appendHtml
+    appendSelector: null
   )
   
   ### 
@@ -50,5 +55,6 @@ define ["marionette"], (Marionette) ->
   return {
     Layout: Layout
     ItemView: ItemView
+    CollectionView: CollectionView
     CompositeView: CompositeView
   }

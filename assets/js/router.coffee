@@ -8,7 +8,7 @@ define [
   router = Backbone.Router.extend(
     routes:
       "" : "home",
-      "search/:category/:query" : "search"
+      "search/:region/:category" : "search"
 
     home: () ->
       console.log "Home"
