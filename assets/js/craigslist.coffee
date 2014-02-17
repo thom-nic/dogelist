@@ -61,7 +61,7 @@ define [
             @trigger "search:results", collection
 
           error: (collection, response, options) =>
-            console.debug "Search error", collection
+            console.debug "Search error", collection, response
             @trigger "search:error", collection
         )
     )

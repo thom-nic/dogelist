@@ -31,6 +31,13 @@ html(lang='en')
         #searchFormRegion.col-md-12
 
       .row
+        .col-md-12
+          #errorMsg.alert.alert-warning.alert-dismissable(style='display:none')
+            button(type="button" class="close" data-dismiss="alert" aria-hidden="true") &times;
+            span.errorText
+
+
+      .row
         #searchResultsRegion.col-md-12
 
 
@@ -48,6 +55,7 @@ html(lang='en')
           input.form-control( type='text', name='query', placeholder='Search', value='Single speed')
         .form-group
           // FIXME replace w/ select option
+
           input.form-control( type='text', name='region', placeholder='Region', value='providence')
         .form-group
           // FIXME replace w/ select option

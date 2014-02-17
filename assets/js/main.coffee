@@ -3,9 +3,10 @@ define [
   "backbone",
   "router",
   "exchange",
-  "craigslist"
-  "marionette" ],
-  ($, Backbone, Router, exchange, craigslist) ->
+  "craigslist",
+  "marionette",
+  "bootstrap" ],
+  ($, Backbone, Router, exchange, craigslist, bootstrap) ->
 
     App= new Backbone.Marionette.Application()
     App.addRegions
@@ -30,14 +31,15 @@ define [
         App.searchResultsRegion.show view
 
       .on "search:error", () ->
-        console.log "search Error"
+         App.showSearchError "Search error!  Please try again!"
+
 
       App.exchangeRegion.show exchangeView
       App.searchFormRegion.show searchForm
       App.searchResultsRegion.show new craigslist.SearchResultsView()
 
     App.on "initialize:after", ->
-      console.log "Started app", this
+      console.log "Started app", @
 
     
     App.router = new Router()
@@ -51,6 +53,9 @@ define [
       $(document).ajaxStop ->
         $("i.fa-spin").fadeOut()
 
+
+    App.showSearchError = (msg) ->
+      $('#errorMsg').show().find('.errorText').text(msg)
 
     return app: App
 
