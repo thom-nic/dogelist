@@ -1,3 +1,4 @@
+_ = require 'underscore'
 request = require './request-cache'
 
 class Craigslist
@@ -13,11 +14,12 @@ class Craigslist
   # Currently 1 user request every 60 seconds will have to wait for 
   # coinbase to return the result.
   ###
-  search: (location, type, q) ->
+  search: (location, type, q, cb) ->
     _url = _fmt_craigslist_url location, type, q
 
     @request.get_cache_first _url, (data) ->
-      cb data?.query?.results?.RDF?.item?.map _format
+      #console.log data
+      cb data?.data?.query?.results?.RDF?.item?.map _format
 
 
 _fmt_craigslist_url = (loc,type,q) ->
@@ -29,15 +31,15 @@ _fmt_craigslist_url = (loc,type,q) ->
    &format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
 
 _format = (i) ->
-  title = unescape i.title[0]
+  title = i.title[0]
   console.log title
-  [title, price] = title.split('$')
+  [title, price] = title.split('&#x0024;') # escaped '$'
 
   return {
     link : i.link
-    title: title
+    title: _.unescape title
     price: price
-    description: i.description
+    description: _.unescape i.description
     posted: i.date
   }
 
