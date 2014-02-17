@@ -22,21 +22,31 @@ define ["marionette"], (Marionette) ->
   # item will be inserted.
   ###
   _appendHtml = (collectionView, itemView) ->
-      if @appendSelector
+      if collectionView.isBuffering
+        collectionView.elBuffer.appendChild itemView.el
+      else if @appendSelector
         collectionView.$(@appendSelector).append itemView.el
       else
         collectionView.$el.append itemView.el
+
+  _appendBufferToSelector = (collectionView, buffer) ->
+    if @appendSelector
+      collectionView.$(@appendSelector).append buffer
+    else
+      collectionView.$el.append buffer
 
   Layout = Marionette.Layout.extend(onRender: _new_render)
   ItemView = Marionette.ItemView.extend(onRender: _new_render)
   CollectionView = Marionette.CollectionView.extend(
     onRender: _new_render
     appendHtml: _appendHtml
+    appendBuffer: _appendBufferToSelector
     appendSelector: null
   )
   CompositeView = Marionette.CompositeView.extend(
     onRender: _new_render
     appendHtml: _appendHtml
+    appendBuffer: _appendBufferToSelector
     appendSelector: null
   )
   
@@ -48,7 +58,7 @@ define ["marionette"], (Marionette) ->
     return _.template( rawTemplate, null, {
        interpolate: /\{!(.+?)\}/g
        escape: /\{(.+?)\}/g
-       evaluate: /\{%(.+?)%\}/g
+       evaluate: /\<\%(.+?)\%\>/g
      })
   
 

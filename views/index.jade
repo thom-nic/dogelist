@@ -69,9 +69,13 @@ html(lang='en')
         h3
           a( href="{ link }", target='_new' )
             span.title { title } - 
-            span.price 
+            span.price
+              <% if ( ! isNaN(calc_price) ) { %>
               i.fa.fa-btc
-              { price }
+              span.btc(title='$ { price }') { calc_price }
+              <% } else { %>
+              $ { price }
+              <% } %>
         p { description }
 
     //- This precompiles the assets since they're being loaded via require.js

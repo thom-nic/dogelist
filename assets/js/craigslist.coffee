@@ -12,6 +12,7 @@ define [
           title : ""
           timestamp : new Date()
           price : 0
+          calc_price : NaN
           description : ''
 
         urlRoot: 'craigslist/item'
@@ -67,11 +68,6 @@ define [
 
     ResultItemView = Elbow.ItemView.extend(
       template: "#searchResultItemTmpl"
-      initialize: () ->
-        console.log "Created search result item"
-
-      onRender: () ->
-        console.log "Render item", @
     )
 
     NoResultsView = Elbow.ItemView.extend(
@@ -83,6 +79,14 @@ define [
 #      appendSelector: '.searchResults'
       itemView: ResultItemView
       emptyView: NoResultsView
+      currentRate: null
+
+      updateRate: (model) ->
+        @currentRate = model.get 'rate'
+        return unless @collection?
+        @collection.each (item,i) =>
+          item.set "calc_price", item.get('price')* @currentRate
+          #console.log "updated rate", item, @currentRate
 
       onRender: () ->
         console.log "render collection", @

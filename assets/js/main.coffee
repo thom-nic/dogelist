@@ -18,12 +18,15 @@ define [
       exchangeView = new exchange.ExchangeView()
       searchForm = new craigslist.SearchFormView()
 
-      exchangeView.on "rate:change", (newRate) ->
-        console.log "New rate", newRate
-      
       searchForm.on "search:results", (searchResults) ->
         console.log 'results', searchResults
-        view = new craigslist.SearchResultsView(collection: searchResults)
+        view = new craigslist.SearchResultsView(
+          collection: searchResults )
+        if exchangeView.model
+          view.updateRate exchangeView.model
+        exchangeView.on "rate:change", (newRate) ->
+          console.log "New rate", newRate
+          view.updateRate newRate
         App.searchResultsRegion.show view
 
       .on "search:error", () ->
