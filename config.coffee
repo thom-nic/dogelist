@@ -1,8 +1,8 @@
-os = require "os"
+env = process.env
 
 module.exports =
-  redis_host: process.env.REDIS_IP or "localhost"
-  redis_port: process.env.REDIS_PORT or 6379
+  redis_host: env.REDIS_IP or "localhost"
+  redis_port: env.REDIS_PORT or 6379
   cache_ttl: 30 * 60
   http_client_timeout: 4
   http_max_sockets: 20
@@ -12,10 +12,7 @@ module.exports =
     site_description: "Craigslist with Dogecoin prices"
 
   session_key: "much wow"
-  debug: true
-  listen_port: 8888
-  listen_ip: "0.0.0.0"
-  
-  # change this to a public hostname on prod:
-  http_url: "http://#{os.hostname()}:8888"
+  debug : ! env.OPENSHIFT_GEAR_DNS
+  listen_port : parseInt(env.OPENSHIFT_INTERNAL_PORT) or 8888
+  listen_ip : (env.OPENSHIFT_INTERNAL_IP or "127.0.0.1")
 
