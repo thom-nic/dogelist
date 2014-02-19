@@ -9,6 +9,10 @@ html(lang='en')
       rel="stylesheet")
     link( href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css", 
       rel="stylesheet")
+    link( href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css",
+      rel="stylesheet")
+    link( href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2-bootstrap.css",
+      rel="stylesheet")
     !=css('custom')
 
   body
@@ -53,7 +57,9 @@ html(lang='en')
       form#searchForm.form-inline(action='/search', role='form')
         .form-group.col-xs-4
           label.sr-only(for="query") Search query
-          input.form-control( type='text', name='query', placeholder='Search', value='Single speed')
+          input.form-control( type='text', name='query', 
+            placeholder='Search', value='Single speed')
+
         .form-group.col-xs-2
           label.sr-only(for="region") Region
           select.form-control(name='region', placeholder='Location')
@@ -63,6 +69,7 @@ html(lang='en')
             <% for ( i in region ) { %>
             option(value='{ region[i].region }') { region[i].name }
             <% } } %>
+
         .form-group.col-xs-2
           label.sr-only(for="category") Listing category
           select.form-control(name='category', placeholder='Category')

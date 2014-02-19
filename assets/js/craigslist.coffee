@@ -4,7 +4,8 @@ define [
   "text!categories.json",
   "backbone",
   "elbow",
-  'form' ],
+  'form',
+  'select2' ],
   ($, regions, categories, Backbone, Elbow) ->
 
     Post = Backbone.Model.extend(
@@ -48,10 +49,16 @@ define [
 
       ui:
         searchForm: '#searchForm'
+        regionSelect: 'select[name="region"]'
+        categorySelect: 'select[name="category"]'
 
       events:
         'submit @ui.searchForm': 'doSearch'
         'click #searchBtn': 'doSearch'
+
+      onDomRefresh: ->
+        @ui.regionSelect.select2(placeholder: "Region")
+        @ui.categorySelect.select2(placeholder: "Category")
 
       doSearch: (e) ->
         e.preventDefault()
