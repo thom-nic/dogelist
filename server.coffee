@@ -48,7 +48,7 @@ quit = (sig) ->
 # Process on exit and signals.
 process.on "exit", quit
 
-"HUP,INT,QUIT,TERM".split(",").forEach (sig, i) ->
+"HUP,INT,QUIT".split(",").forEach (sig, i) ->
   process.on "SIG#{sig}", ->
     quit "SIG#{sig}"
 
