@@ -8,7 +8,7 @@ suite 'routes', () ->
 
     test 'GET', (done) ->
       request
-        .get "/exchange"
+        .get "/exchange/btc/usd"
         .expect 200
         .expect 'Content-Type', /json/
         .end (err, res) ->
