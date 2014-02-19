@@ -4,6 +4,7 @@
   "description": "dogelist",
   "homepage": "http://github.com/tomstrummer/dogelist",
   "main": "server.coffee",
+  "private": true,
   "dependencies": {
     "express": "3.4.8",
     "jade": "1.1.5",
@@ -30,6 +31,7 @@
     "chai": "1.9.0",
     "jsdom": "0.10.1"
   },
+  "bundleDependencies": [],
   "scripts": {
     "test": "mocha",
     "start": "nodemon",
@@ -38,20 +40,21 @@
     "lint": "coffeelint lib assets/js"
   },
   "engines": {
-    "node": "*"
+    "node": ">= 0.10",
+    "npm": ">= 1.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tomstrummer/project.git"
+    "url": "git://github.com/tomstrummer/dogelist.git"
   },
   "bugs": {
-    "url": "http://github.com/project/issues"
+    "url": "http://github.com/tomstrummer/dogelist/issues"
   },
-  "keywords": [],
+  "keywords": ["much","wow","craigslist"],
   "author": {
     "name": "Thom Nichols",
     "email": "tnichols@enernoc.com",
-    "url": ""
+    "url": "http://blog.thomnichols.org"
   },
   "license": "not BSD"
 }
