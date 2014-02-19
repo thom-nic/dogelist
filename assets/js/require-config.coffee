@@ -7,6 +7,7 @@ CDNJS_PATHS =
   marionette: '//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.1.0-bundled/backbone.marionette.min'
   moment: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min'
   mustache: '//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min'
+  text: '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text.min'
 
 LOCAL_BASEDIR = '/static/js/lib/'
 
@@ -19,7 +20,10 @@ LOCAL_PATHS =
   backbone_associations: "#{LOCAL_BASEDIR}backbone-associations"
   marionette: "#{LOCAL_BASEDIR}backbone.marionette"
   moment: "#{LOCAL_BASEDIR}moment.min"
+  text: "#{LOCAL_BASEDIR}require_text"
 
+  regions: '/static/js/regions'
+  categories: '/static/js/categories'
 
 @require =
   paths: LOCAL_PATHS #if @USE_CDN then CDNJS_PATHS else LOCAL_PATHS
