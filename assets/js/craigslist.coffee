@@ -1,10 +1,11 @@
 define [
   "jquery",
-  "underscore",
+  "text!regions.json",
+  "text!categories.json",
   "backbone",
   "elbow",
   'form' ],
-  ($, _, Backbone, Elbow) ->
+  ($, regions, categories, Backbone, Elbow) ->
 
     Post = Backbone.Model.extend(
         defaults:
@@ -40,6 +41,10 @@ define [
 
     SearchFormView = Elbow.ItemView.extend(
       template: '#searchTmpl'
+
+      serializeData: () ->
+        categories: JSON.parse categories
+        regions: JSON.parse regions
 
       ui:
         searchForm: '#searchForm'

@@ -56,12 +56,19 @@ html(lang='en')
           input.form-control( type='text', name='query', placeholder='Search', value='Single speed')
         .form-group.col-xs-2
           label.sr-only(for="region") Region
-          // FIXME replace w/ select option
-          input.form-control( type='text', name='region', placeholder='Region', value='providence')
+          select.form-control(name='region', placeholder='Location')
+            <% for (state in regions) { %>
+            option(disabled) { state }
+            <% region = regions[state] %>
+            <% for ( i in region ) { %>
+            option(value='{ region[i].region }') { region[i].name }
+            <% } } %>
         .form-group.col-xs-2
           label.sr-only(for="category") Listing category
-          // FIXME replace w/ select option
-          input.form-control( type='text', name='category', placeholder='Category', value='bik')
+          select.form-control(name='category', placeholder='Category')
+            <% for ( i in categories ) { %>
+            option(value='{ categories[i].cat }') { categories[i].title }
+            <% } %>
         input#searchBtn.btn( type='submit', value='Search!')
 
 
