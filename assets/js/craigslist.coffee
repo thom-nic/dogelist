@@ -99,7 +99,7 @@ define [
         @currentRate = model.get 'rate'
         return unless @collection?
         @collection.each (item,i) =>
-          item.set "calc_price", item.get('price')* @currentRate
+          item.set "calc_price", (item.get('price')* @currentRate).toFixed(4)
           #console.log "updated rate", item, @currentRate
 
       onRender: () ->

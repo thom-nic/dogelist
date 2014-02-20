@@ -50,7 +50,7 @@ html(lang='en')
     script#exchangeTmpl(type='text/html')
       li
         a.price_fade(href='#', title='{ timestamp }') 
-          | $ to <i class='fa fa-btc'/>: { rate }
+          | $ to <i class='fa fa-btc'/>: { (1/rate).toFixed(2) }
 
 
     script#searchTmpl(type='text/html')
@@ -95,7 +95,7 @@ html(lang='en')
             span.title { title } - 
             span.price
               <% if ( ! isNaN(calc_price) ) { %>
-              i.fa.fa-btc
+              i.fa.fa-btc 
               span.btc(title='$ { price }') { calc_price }
               <% } else { %>
               $ { price }
