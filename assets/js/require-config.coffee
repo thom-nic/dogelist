@@ -9,6 +9,7 @@ CDNJS_PATHS =
   mustache: '//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min'
   text: '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text.min'
   select2: '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min'
+  backbone_cache: '//cdnjs.cloudflare.com/ajax/libs/backbone.fetch-cache/1.1.2/backbone.fetch-cache.min'
 
 LOCAL_BASEDIR = '/static/js/lib/'
 
@@ -19,6 +20,7 @@ LOCAL_PATHS =
   json2: "#{LOCAL_BASEDIR}json2"
   backbone: "#{LOCAL_BASEDIR}backbone"
   backbone_associations: "#{LOCAL_BASEDIR}backbone-associations"
+  backbone_cache: "#{LOCAL_BASEDIR}backbone.fetch-cache"
   marionette: "#{LOCAL_BASEDIR}backbone.marionette"
   moment: "#{LOCAL_BASEDIR}moment.min"
   text: "#{LOCAL_BASEDIR}require_text"

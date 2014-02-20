@@ -5,7 +5,8 @@ define [
   "backbone",
   "elbow",
   'form',
-  'select2' ],
+  'select2',
+  'backbone_cache'],
   ($, regions, categories, Backbone, Elbow) ->
 
     Post = Backbone.Model.extend(
@@ -68,6 +69,7 @@ define [
         new Search(
           params: params
         ).fetch(
+          prefill: true
           success: (collection, response, options) =>
             console.debug "Search success", collection
             @trigger "search:results", collection

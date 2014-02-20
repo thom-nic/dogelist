@@ -1,7 +1,8 @@
 define [
   "jquery",
   "backbone",
-  "elbow"],
+  "elbow",
+  "backbone_cache" ],
   ($, Backbone, Elbow) ->
 
     Rate = Backbone.Model.extend(
@@ -28,9 +29,10 @@ define [
       initialize: (opts) ->
         unless opts?.model
           @model = new Rate()
-#          @model.on 'change', @render
-          @model.fetch()
+          @model.fetch prefill: true
         console.log "init", @$el
+
+      # FIXME periodically update the rate from the server
 
       rateChange: (model) ->
         console.log "Rate change event", model
