@@ -29,10 +29,13 @@ define [
           console.log "New rate", newRate
           view.updateRate newRate
         App.searchResultsRegion.show view
+        App.hideError()
 
       .on "search:error", () ->
-         App.showSearchError "Search error!  Please try again!"
+         App.showError "Search error!  Please try again!"
 
+      $('#errorMsg .close').on 'click', (e) ->
+        App.hideError()
 
       App.exchangeRegion.show exchangeView
       App.searchFormRegion.show searchForm
@@ -54,8 +57,11 @@ define [
         $("i.fa-spin").fadeOut()
 
 
-    App.showSearchError = (msg) ->
-      $('#errorMsg').show().find('.errorText').text(msg)
+    App.hideError = ->
+      $('#errorMsg').removeClass 'in'
+
+    App.showError = (msg) ->
+      $('#errorMsg').addClass('in').find('.errorText').text(msg)
 
     return app: App
 
