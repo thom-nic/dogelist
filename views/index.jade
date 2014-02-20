@@ -36,8 +36,8 @@ html(lang='en')
 
       .row
         .col-md-12
-          #errorMsg.alert.alert-warning.alert-dismissable(style='display:none')
-            button(type="button" class="close" data-dismiss="alert" aria-hidden="true") &times;
+          #errorMsg.alert.alert-warning.alert-dismissable.fade
+            button(type="button" class="close" aria-hidden="true") &times;
             span.errorText
 
 
@@ -57,12 +57,11 @@ html(lang='en')
       form#searchForm.form-inline(action='/search', role='form')
         .form-group.col-xs-4
           label.sr-only(for="query") Search query
-          input.form-control( type='text', name='query', 
-            placeholder='Search', value='Single speed')
+          input.form-control( type='text', name='query', placeholder='Search')
 
         .form-group.col-xs-2
           label.sr-only(for="region") Region
-          select.form-control(name='region', placeholder='Location')
+          select.form-control(name='region', data-placeholder='Location')
             <% for (state in regions) { %>
             option(disabled) { state }
             <% region = regions[state] %>
@@ -72,7 +71,7 @@ html(lang='en')
 
         .form-group.col-xs-2
           label.sr-only(for="category") Listing category
-          select.form-control(name='category', placeholder='Category')
+          select.form-control(name='category', data-placeholder='Category')
             <% for ( i in categories ) { %>
             option(value='{ categories[i].cat }') { categories[i].title }
             <% } %>
