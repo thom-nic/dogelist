@@ -19,7 +19,7 @@ class Craigslist
 
     @request.get_cache_first _url, (data) ->
       #console.log data
-      cb data?.data?.query?.results?.RDF?.item?.map _format
+      cb data?.data?.query?.results?.RDF?.item?.map? _format
 
 
 _fmt_craigslist_url = (loc,type,q) ->
