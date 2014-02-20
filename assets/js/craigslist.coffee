@@ -44,12 +44,24 @@ define [
     SearchFormView = Elbow.ItemView.extend(
       template: '#searchTmpl'
 
+      initialize: (opts) ->
+        @remember = window.localStorage?
+        try
+          localStorage.setItem 'test','test'
+          localStorage.removeItem 'test'
+
+          @params = JSON.parse localStorage.getItem("last_search")
+
+        catch e
+          @remember = false
+
       serializeData: () ->
         categories: JSON.parse categories
         regions: JSON.parse regions
 
       ui:
         searchForm: '#searchForm'
+        searchQuery: 'input[name="query"]'
         regionSelect: 'select[name="region"]'
         categorySelect: 'select[name="category"]'
 
@@ -58,16 +70,24 @@ define [
         'click #searchBtn': 'doSearch'
 
       onDomRefresh: ->
-        @ui.regionSelect.select2(placeholder: "Region")
-        @ui.categorySelect.select2(placeholder: "Category")
+        if @params
+          @ui.searchQuery.val @params.query
+          @ui.regionSelect.val(@params?.region).select2()
+          @ui.categorySelect.val(@params?.category).select2()
+        else
+          @ui.regionSelect.select2()
+          @ui.categorySelect.select2()
 
       doSearch: (e) ->
         e.preventDefault()
-        params = @ui.searchForm.form2obj()
-        console.log "Form params",e, params
+        @params = @ui.searchForm.form2obj()
+        console.log "Form params",e, @params
+
+        if @remember
+          localStorage.setItem "last_search", JSON.stringify(@params)
 
         new Search(
-          params: params
+          params: @params
         ).fetch(
           prefill: true
           success: (collection, response, options) =>
