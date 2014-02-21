@@ -16,6 +16,7 @@ app.configure ->
   app.set "views", path.join(basedir, "views")
   app.set "view engine", "jade"
   app.use express.logger() unless process.env.COVERAGE
+  app.use express.compress()
   app.use express.cookieParser()
   app.use express.bodyParser()
   app.use express.methodOverride()
