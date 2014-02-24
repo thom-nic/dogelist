@@ -16,3 +16,4 @@ module.exports =
   listen_port : parseInt(env.OPENSHIFT_INTERNAL_PORT) or 8888
   listen_ip : (env.OPENSHIFT_INTERNAL_IP or "127.0.0.1")
 
+  exchange_auto_refresh_interval: 61
