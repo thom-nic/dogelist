@@ -4,9 +4,9 @@ config = require './config'
 expect = require('chai').expect
 
 suite 'routes', () ->
-  suite '/exchange', () ->
+  suite 'exchange', () ->
 
-    test 'GET', (done) ->
+    test 'btc/usd', (done) ->
       request
         .get "/exchange/btc/usd"
         .expect 200
@@ -19,7 +19,7 @@ suite 'routes', () ->
           expect(res.body.rate).to.be.a 'number'
           done()
 
-  suite '/craigslist', () ->
+  suite 'craigslist', () ->
 
     test "search", () ->
       request
@@ -29,4 +29,14 @@ suite 'routes', () ->
         .end (err, res) ->
           expect(err).to.equal null
           expect(res).to.be.an 'array'
+          done()
+
+
+  suite 'root', ->
+    test '/', (done) ->
+      request
+        .get "/"
+        .expect 200
+        .expect 'content-type', /html/
+        .end (err,res) ->
           done()
