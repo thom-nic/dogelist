@@ -33,7 +33,7 @@
   "bundleDependencies": [],
   "scripts": {
     "test": "mocha",
-    "start": "supervisor server.js",
+    "start": "supervisor server.coffee",
     "start-dev": "nodemon",
     "dependency-report": "node-dependencies --sort=urgency",
     "coverage": "COVERAGE=true mocha --reporter html-cov > reports/coverage.html",
