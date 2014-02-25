@@ -107,13 +107,19 @@ define [
     NoResultsView = Elbow.ItemView.extend(
       template: "#noSearchResultsTmpl"
     )
+    FirstSearchView = Elbow.ItemView.extend(
+      template: "#doSearchTmpl"
+    )
 
     SearchResultsView = Elbow.CollectionView.extend(
       template: "#searchResultsTmpl"
-#      appendSelector: '.searchResults'
+      # appendSelector: '.searchResults'
       itemView: ResultItemView
-      emptyView: NoResultsView
       currentRate: null
+
+      getEmptyView: () ->
+        return FirstSearchView unless @collection
+        return NoResultsView
 
       updateRate: (model) ->
         @currentRate = model.get 'rate'
