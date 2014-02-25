@@ -1,6 +1,8 @@
 # Dogelist
 
-Craigslist in dogecoin
+Craigslist in dogecoin/ Bitcoin
+
+[![Build Status](https://travis-ci.org/tomstrummer/dogelist.png?branch=master)](https://travis-ci.org/tomstrummer/dogelist) [![Dependency Status](https://gemnasium.com/tomstrummer/dogelist.png)](https://gemnasium.com/tomstrummer/dogelist) 
 
 Basically this runs a craigslist search and returns prices of for-sale items 
 in dogecoin (actually bitcoin right now, I can't find a direct USD to DOGE
@@ -9,7 +11,7 @@ conversion.)
 ## Motivation
 
 Attempt to make a web app that's highly tolerant to network failures through
-a combination of agressive caching and clever UI mechanisms.  Also an 
+a combination of agressive caching and clever UI feedback.  Also an 
 exercise for me to play with Backbone and CSS3 animations.
 
 Caching happens at the app server level in case a dependent service is 
@@ -29,11 +31,11 @@ rate is not available.
 * Redis v2.any
 * Internets
 
-## Run stuff
+## Much run
 
 `npm start`
 
-## Test stuff
+## Much test
 
 `npm test`
 
