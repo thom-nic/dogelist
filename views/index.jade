@@ -5,7 +5,7 @@ html(lang='en')
     title #{ site_title }
     meta(name='description', content='#{ site_description }')
     // Add favicon.ico and stylesheets here 
-    link( href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css", 
+    link( href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/css/bootstrap.min.css", 
       rel="stylesheet")
     link( href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css", 
       rel="stylesheet")
@@ -17,17 +17,18 @@ html(lang='en')
 
   body
     nav.navbar.navbar-inverse.navbar-fixed-top( role='navigation' )
-      .navbar-header
-        a.navbar-brand( href="/" ) #{ site_title }
+      .container
+        .navbar-header
+          a.navbar-brand( href="/" ) #{ site_title }
 
-      .collapse.navbar-collapse
-        ul.nav.navbar-nav
-          block nav
-          li
-            a
-              i.fa.fa-cog.fa-spin( style='display:none' )
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            block nav
+            li
+              a
+                i.fa.fa-cog.fa-spin( style='display:none' )
 
-        ul#exchangeRegion.nav.navbar-nav.navbar-right
+          ul#exchangeRegion.nav.navbar-nav.navbar-right
         
     .container.main
 
@@ -49,7 +50,8 @@ html(lang='en')
 
     script#exchangeTmpl(type='text/html')
       li
-        a.price_fade(href='#', title='{ timestamp }') 
+        a.price_fade(href='#', title='Last updated: { last_refresh_ts() }', 
+          data-toggle='tooltip', data-placement='bottom') 
           | $ to <i class='fa fa-btc'/>: { (1/rate).toFixed(2) }
 
 

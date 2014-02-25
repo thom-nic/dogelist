@@ -8,13 +8,26 @@ define [
   "bootstrap" ],
   ($, Backbone, Router, exchange, craigslist, bootstrap) ->
 
-    App= new Backbone.Marionette.Application()
-    App.addRegions
+    App = Backbone.Marionette.Application.extend(
+      startExchangeRefresh: (view) ->
+        @exchangeRefreshInterval = setInterval ->
+          view.refresh()
+        , 60000
+
+      showError: (msg) ->
+        $('#errorMsg').addClass('in').find('.errorText').text msg
+      
+      hideError: ->
+        $('#errorMsg').removeClass 'in'
+    )
+
+    app= new App()
+    app.addRegions
       exchangeRegion: "#exchangeRegion"
       searchFormRegion: '#searchFormRegion'
       searchResultsRegion: '#searchResultsRegion'
 
-    App.addInitializer (opts) ->
+    app.addInitializer (opts) ->
 
       exchangeView = new exchange.ExchangeView()
       searchForm = new craigslist.SearchFormView()
@@ -28,28 +41,29 @@ define [
         exchangeView.on "rate:change", (newRate) ->
           console.log "New rate", newRate
           view.updateRate newRate
-        App.searchResultsRegion.show view
-        App.hideError()
+        app.searchResultsRegion.show view
+        app.hideError()
 
       .on "search:error", () ->
-         App.showError "Search error!  Please try again!"
+         app.showError "Search error!  Please try again!"
 
       $('#errorMsg .close').on 'click', (e) ->
-        App.hideError()
+        app.hideError()
 
-      App.exchangeRegion.show exchangeView
-      App.searchFormRegion.show searchForm
-      App.searchResultsRegion.show new craigslist.SearchResultsView()
+      app.exchangeRegion.show exchangeView
+      app.searchFormRegion.show searchForm
+      app.searchResultsRegion.show new craigslist.SearchResultsView()
 
-    App.on "initialize:after", ->
+      app.startExchangeRefresh exchangeView
+
+    app.on "initialize:after", ->
       console.log "Started app", @
-
     
-    App.router = new Router()
+    app.router = new Router()
     Backbone.history.start()
       
     $(document).ready ->
-      App.start()
+      app.start()
       $(document).ajaxStart ->
         $("i.fa-spin").show()
 
@@ -57,11 +71,5 @@ define [
         $("i.fa-spin").fadeOut()
 
 
-    App.hideError = ->
-      $('#errorMsg').removeClass 'in'
-
-    App.showError = (msg) ->
-      $('#errorMsg').addClass('in').find('.errorText').text(msg)
-
-    return app: App
+    return app: app
 

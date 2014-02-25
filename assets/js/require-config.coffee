@@ -1,6 +1,6 @@
 CDNJS_PATHS =
   jquery: '//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min'
-  bootstrap: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min'
+  bootstrap: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/js/bootstrap.min'
   underscore: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min'
   json2: '//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2'
   backbone: '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min'

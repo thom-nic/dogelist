@@ -2,8 +2,10 @@ define [
   "jquery",
   "backbone",
   "elbow",
+  "moment",
+  "bootstrap",
   "backbone_cache" ],
-  ($, Backbone, Elbow) ->
+  ($, Backbone, Elbow, moment) ->
 
     Rate = Backbone.Model.extend(
         defaults:
@@ -29,18 +31,26 @@ define [
       initialize: (opts) ->
         unless opts?.model
           @model = new Rate()
-          @model.fetch prefill: true
+          @refresh()
         console.log "init", @$el
 
-      # FIXME periodically update the rate from the server
+      refresh: ->
+        @model.fetch prefill: true
 
       rateChange: (model) ->
         console.log "Rate change event", model
         @trigger "rate:change", model
 
-      onRender: () ->
-        Elbow.ItemView::onRender.call this
+      onRender: ->
+        Elbow.ItemView::onRender.call @
         #console.log 'render!', @, @$el, @$el.parent()
+
+      onDomRefresh: ->
+        @$el.find('[data-toggle="tooltip"]').tooltip()
+                
+      templateHelpers:
+        last_refresh_ts: () ->
+          moment(@timestamp).calendar()
     )
 
     return {
