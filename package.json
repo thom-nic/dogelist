@@ -13,7 +13,7 @@
     "path": "0.4.9",
     "redis": "0.10.1",
     "async": "0.2.10",
-    "connect-redis": "1.4.6",
+    "connect-redis": "1.4.7",
     "connect-assets": "2.5.4",
     "datejs": "1.0"
   },
