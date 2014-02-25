@@ -15,6 +15,7 @@ init = (app, config, coin, craigslist) ->
         return res.json 503, {error: {message : "Exchange rate unavailable"} } unless rate
 
         res.json rate
+      , max_age=900
     )
 
   app.get '/search/:location/:category', (req, res) ->
