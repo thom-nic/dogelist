@@ -1,6 +1,23 @@
 #!/bin/bash
 
 # This is run immediately after `npm install`
-
 echo "++++ Build ++++"
-${OPENSHIFT_REPO_DIR}node_modules/.bin/bower install
+
+BOWER=${OPENSHIFT_REPO_DIR}node_modules/.bin/bower
+# because bower wants to write to $HOME/.local which isn't writable in openshift
+FAKE_HOME_DIR=${OPENSHIFT_DATA_DIR}
+# we install packages here because it will be cached between deploys:
+BOWER_INSTALL_DIR=${OPENSHIFT_DATA_DIR}bower
+# this is the location within the app that will be served by node.
+# TODO would be nice to not have to duplicate this value, it needs to mirror 
+# .bowerrc
+BOWER_APP_DIR=${OPENSHIFT_REPO_DIR}static/lib
+
+
+mkdir $BOWER_INSTALL_DIR
+
+echo $BOWER --config.directory=$BOWER_INSTALL_DIR install
+env HOME=$FAKE_HOME_DIR $BOWER --config.directory=$BOWER_INSTALL_DIR install
+
+echo ln -s $BOWER_INSTALL_DIR $BOWER_APP_DIR
+ln -s $BOWER_INSTALL_DIR $BOWER_APP_DIR 
