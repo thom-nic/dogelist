@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This is run after the build
+
 COFFEE_BIN_DST="$HOME/app-root/runtime/dependencies/nodejs/node_modules/.bin"
 COFFEE_BIN_SRC="$HOME/app-root/runtime/dependencies/.npm/coffee-script/1.7.1/package/bin/coffee"
 

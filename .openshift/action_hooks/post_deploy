@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# This is run after the app has been restarted
+
+echo "++++ Post deploy ++++"
+echo "App is running at http://$OPENSHIFT_GEAR_DNS"

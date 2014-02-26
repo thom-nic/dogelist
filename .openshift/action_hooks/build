@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# This is sort of a hack since I can't seem to change how the default node.js
-# cartridge invokes the 'supervisor' start script.
+# This is run immediately after `npm install`
 
 echo "++++ Build ++++"
-#npm install -g coffee-script@1.7.1
