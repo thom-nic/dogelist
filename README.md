@@ -2,7 +2,7 @@
 
 Craigslist in dogecoin/ Bitcoin
 
-[![Build Status](https://travis-ci.org/tomstrummer/dogelist.png?branch=master)](https://travis-ci.org/tomstrummer/dogelist) [![Dependency Status](https://gemnasium.com/tomstrummer/dogelist.png)](https://gemnasium.com/tomstrummer/dogelist) 
+[![Build Status](https://img.shields.io/travis/tomstrummer/dogelist.svg)](https://travis-ci.org/tomstrummer/dogelist) [![Dependency Status](https://img.shields.io/gemnasium/tomstrummer/dogelist.svg)](https://gemnasium.com/tomstrummer/dogelist) 
 
 Basically this runs a craigslist search and returns prices of for-sale items 
 in dogecoin (actually bitcoin right now, I can't find a direct USD to DOGE
