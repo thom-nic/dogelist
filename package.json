@@ -33,8 +33,7 @@
   "bundleDependencies": [],
   "scripts": {
     "test": "mocha",
-    "start": "supervisor server.coffee",
-    "start-dev": "nodemon",
+    "start": "nodemon",
     "dependency-report": "node-dependencies --sort=urgency",
     "coverage": "COVERAGE=true mocha --reporter html-cov > reports/coverage.html",
     "lint": "coffeelint lib assets/js"
