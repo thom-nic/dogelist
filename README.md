@@ -25,11 +25,13 @@ fade the dogecoin price from neutral to yellow/ red if the latest exchange
 rate is not available.
 
 
-## Requirements
+## Requirements & Setup
 
 * Node.js v0.10.x
 * Redis v2.any
 * Internets
+
+Run `npm install && npm run-script setup` to install node modules and bower modules.
 
 ## Much run
 

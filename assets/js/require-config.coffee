@@ -1,36 +1,40 @@
-CDNJS_PATHS =
-  jquery: '//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min'
-  bootstrap: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/js/bootstrap.min'
-  underscore: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min'
-  json2: '//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2'
-  backbone: '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min'
-  marionette: '//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.1.0-bundled/backbone.marionette.min'
-  moment: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min'
-  mustache: '//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min'
-  text: '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text.min'
-  select2: '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min'
-  backbone_cache: '//cdnjs.cloudflare.com/ajax/libs/backbone.fetch-cache/1.1.2/backbone.fetch-cache.min'
+CDN_BASE = '//cdnjs.cloudflare.com/ajax/libs/'
 
-LOCAL_BASEDIR = '/static/js/lib/'
+CDNJS_PATHS =
+  jquery: "#{CDN_BASE}jquery/2.0.3/jquery.min"
+  bootstrap: "#{CDN_BASE}twitter-bootstrap/3.1.0/js/bootstrap.min"
+  underscore: "#{CDN_BASE}underscore.js/1.5.2/underscore-min"
+  json2: "#{CDN_BASE}json2/20121008/json2"
+  backbone: "#{CDN_BASE}backbone.js/1.1.0/backbone-min"
+  marionette: "#{CDN_BASE}backbone.marionette/1.1.0-bundled/backbone.marionette.min"
+  moment: "#{CDN_BASE}moment.js/2.4.0/moment.min"
+  text: "#{CDN_BASE}require-text/2.0.10/text.min"
+  select2: "#{CDN_BASE}select2/3.4.5/select2.min"
+  backbone_cache: "#{CDN_BASE}backbone.fetch-cache/1.1.2/backbone.fetch-cache.min"
+
+LOCAL_BASEDIR = '/static/lib/'
 
 LOCAL_PATHS =
-  jquery: "#{LOCAL_BASEDIR}jquery"
-  bootstrap: "#{LOCAL_BASEDIR}bootstrap"
-  underscore: "#{LOCAL_BASEDIR}underscore"
-  json2: "#{LOCAL_BASEDIR}json2"
-  backbone: "#{LOCAL_BASEDIR}backbone"
-  backbone_associations: "#{LOCAL_BASEDIR}backbone-associations"
-  backbone_cache: "#{LOCAL_BASEDIR}backbone.fetch-cache"
-  marionette: "#{LOCAL_BASEDIR}backbone.marionette"
-  moment: "#{LOCAL_BASEDIR}moment.min"
-  text: "#{LOCAL_BASEDIR}require_text"
+  jquery: "#{LOCAL_BASEDIR}jquery/jquery"
+  bootstrap: "#{LOCAL_BASEDIR}bootstrap/dist/js/bootstrap"
+  underscore: "#{LOCAL_BASEDIR}underscore/underscore"
+  json2: "#{LOCAL_BASEDIR}json2/json2"
+  backbone: "#{LOCAL_BASEDIR}backbone/backbone"
+  backbone_cache: "#{LOCAL_BASEDIR}backbone-fetch-cache/backbone.fetch-cache"
+  marionette: "#{LOCAL_BASEDIR}/marionette/lib/backbone.marionette"
+  moment: "#{LOCAL_BASEDIR}moment/moment"
+  text: "#{LOCAL_BASEDIR}requirejs-text/text"
   select2: "#{LOCAL_BASEDIR}select2/select2"
 
-  regions: '/static/js/regions'
-  categories: '/static/js/categories'
+
+use_local = (document?.documentElement.getAttribute('data-debug') == 'true')
+paths = if use_local then LOCAL_PATHS else CDNJS_PATHS
+
+paths.regions= '/static/json/regions'
+paths.categories= '/static/json/categories'
 
 @require =
-  paths: LOCAL_PATHS #if @USE_CDN then CDNJS_PATHS else LOCAL_PATHS
+  paths: paths
 
   shim:
     jquery:
@@ -42,10 +46,6 @@ LOCAL_PATHS =
 
     backbone:
       deps: ["jquery", "underscore"]
-      exports: "Backbone"
-
-    backbone_associations:
-      deps: ["backbone"]
       exports: "Backbone"
 
     marionette:

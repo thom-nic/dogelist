@@ -1,5 +1,7 @@
 env = process.env
 
+debug = ! env.OPENSHIFT_GEAR_DNS
+
 module.exports =
   redis_host: env.OPENSHIFT_REDIS_HOST or "localhost"
   redis_port: env.OPENSHIFT_REDIS_PORT or 6379
@@ -8,11 +10,14 @@ module.exports =
   http_max_sockets: 20
 
   layout_vars:
+    debug: debug
+    local_assets: debug
+    static_asset_dir: '/static/lib/'
     site_title: "Dogelist"
     site_description: "Craigslist with Dogecoin prices"
 
   session_key: "much wow"
-  debug : ! env.OPENSHIFT_GEAR_DNS
+  debug : debug
   listen_port : parseInt(env.OPENSHIFT_NODEJS_PORT) or 8888
   listen_ip : (env.OPENSHIFT_NODEJS_IP or "127.0.0.1")
 

@@ -1,18 +1,25 @@
 !!! 5
-html(lang='en')
+html(lang='en', data-debug='#{debug}')
   head
     meta(charset='utf-8')
     title #{ site_title }
     meta(name='description', content='#{ site_description }')
-    // Add favicon.ico and stylesheets here 
-    link( href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/css/bootstrap.min.css", 
-      rel="stylesheet")
-    link( href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css", 
-      rel="stylesheet")
-    link( href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css",
-      rel="stylesheet")
-    link( href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2-bootstrap.css",
-      rel="stylesheet")
+    //- TODO Add favicon.ico
+
+    - var cdnjs = "//cdnjs.cloudflare.com/ajax/libs/"
+
+    - if ( local_assets )
+      link( href="#{static_asset_dir}bootstrap/dist/css/bootstrap.css", rel="stylesheet")
+      link( href="#{static_asset_dir}font-awesome/css/font-awesome.css", rel="stylesheet")
+      link( href="#{static_asset_dir}/select2/select2.css", rel="stylesheet")
+    - else
+      link( href="#{cdnjs}twitter-bootstrap/3.1.0/css/bootstrap.min.css", rel="stylesheet")
+      link( href="#{cdnjs}font-awesome/4.0.3/css/font-awesome.min.css", rel="stylesheet")
+      link( href="#{cdnjs}select2/3.4.5/select2.min.css", rel="stylesheet")
+
+    //- this one isn't in cdnjs:
+    link( href="#{static_asset_dir}/select2-bootstrap/select2-bootstrap.css", rel="stylesheet")
+
     !=css('custom')
 
   body
@@ -59,11 +66,11 @@ html(lang='en')
       form#searchForm.form-inline(action='/search', role='form')
         .form-group.col-xs-4
           label.sr-only(for="query") Search query
-          input.form-control( type='text', name='query', placeholder='Search')
+          input.form-control.input-lg( type='text', name='query', placeholder='Search')
 
-        .form-group.col-xs-2
+        .form-group.col-xs-3
           label.sr-only(for="region") Region
-          select.form-control(name='region', data-placeholder='Location')
+          select.form-control.input-lg(name='region', data-placeholder='Location')
             <% for (state in regions) { %>
             option(disabled) { state }
             <% region = regions[state] %>
@@ -71,13 +78,13 @@ html(lang='en')
             option(value='{ region[i].region }') { region[i].name }
             <% } } %>
 
-        .form-group.col-xs-2
+        .form-group.col-xs-3
           label.sr-only(for="category") Listing category
-          select.form-control(name='category', data-placeholder='Category')
+          select.form-control.input-lg(name='category', data-placeholder='Category')
             <% for ( i in categories ) { %>
             option(value='{ categories[i].cat }') { categories[i].title }
             <% } %>
-        input#searchBtn.btn( type='submit', value='Search!')
+        input#searchBtn.btn.btn-lg( type='submit', value='Search!')
 
 
     script#searchResultsTmpl(type='text/html')
@@ -95,7 +102,7 @@ html(lang='en')
           h2 Perform a search above to start
 
     script#searchResultItemTmpl(type='text/html')
-      .result
+      .result.fade.in
         h3
           a( href="{ link }", target='_new' )
             span.title { title } - 
@@ -117,7 +124,9 @@ html(lang='en')
       !=js('craigslist')
       !=js('form')
 
-
     !=js( 'require-config' )
-    script( src='/static/js/lib/require.js', data-main='main', type='text/javascript' )
+    - if ( local_assets )
+      script( src='#{static_asset_dir}/requirejs/require.js', data-main='main', type='text/javascript' )
+    - else
+      script( src='#{cdnjs}require.js/2.1.10/require.min.js', data-main='main', type='text/javascript' )
     
