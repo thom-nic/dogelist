@@ -2,7 +2,10 @@
 
 # This is run after the build
 
-echo "++++ Deploy ++++"
+COFFEE_BIN_DST="${HOME}.node_modules/.bin"
+COFFEE_BIN_SRC="${OPENSHIFT_REPO_DIR}node_modules/.bin/coffee"
 
-echo "export OPENSHIFT_NODEJS_PATH_ELEMENT=${OPENSHIFT_REPO_DIR}node_modules/.bin:$OPENSHIFT_NODEJS_PATH_ELEMENT"
-export OPENSHIFT_NODEJS_PATH_ELEMENT=${OPENSHIFT_REPO_DIR}node_modules/.bin:$OPENSHIFT_NODEJS_PATH_ELEMENT
+echo "++++ Deploy ++++"
+cd $COFFEE_BIN_DST
+ln -s $COFFEE_BIN_SRC .
+echo "ln -s $COFFEE_BIN_SRC $COFFEE_BIN_DST"
