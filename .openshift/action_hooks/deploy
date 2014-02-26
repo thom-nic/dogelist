@@ -1,4 +1,9 @@
 #!/bin/bash
 
-cd ~/.node_modules/.bin/
-ln -s ~/app-root/runtime/dependencies/coffee-script/1.7.1/package/bin/coffee .
+COFFEE_BIN_DST="$HOME/app-root/runtime/dependencies/nodejs/node_modules/.bin"
+COFFEE_BIN_SRC="$HOME/app-root/runtime/dependencies/.npm/coffee-script/1.7.1/package/bin/coffee"
+
+echo "++++ Deploy ++++"
+cd $COFFEE_BIN_DST
+ln -s $COFFEE_BIN_SRC .
+echo "ln -s $COFFEE_BIN_SRC $COFFEE_BIN_DST"
