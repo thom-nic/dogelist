@@ -16,6 +16,7 @@ BOWER_APP_DIR=${OPENSHIFT_REPO_DIR}static/lib
 
 mkdir $BOWER_INSTALL_DIR
 
+cd ${OPENSHIFT_REPO_DIR}
 echo $BOWER --config.directory=$BOWER_INSTALL_DIR install
 env HOME=$FAKE_HOME_DIR $BOWER --config.directory=$BOWER_INSTALL_DIR install
 
