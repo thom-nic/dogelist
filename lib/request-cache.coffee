@@ -79,7 +79,10 @@ class Request
 class Cache
 
   constructor: (config) ->
-    @cache = redis.createClient config.redis_port, config.redis_host
+    @cache = redis.createClient(
+      config.redis.port,
+      config.redis.host,
+      auth_pass: config.redis.pass )
     @cache_ttl = config.cache_ttl # in seconds
 
     @cache.on 'error', (err) ->

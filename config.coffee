@@ -3,8 +3,10 @@ env = process.env
 debug = ! env.OPENSHIFT_GEAR_DNS
 
 module.exports =
-  redis_host: env.OPENSHIFT_REDIS_HOST or "localhost"
-  redis_port: env.OPENSHIFT_REDIS_PORT or 6379
+  redis:
+    hosthost: env.OPENSHIFT_REDIS_HOST or "localhost"
+    port: env.OPENSHIFT_REDIS_PORT or 6379
+    pass: env.REDIS_PASSWORD or null
   cache_ttl: 30 * 60
   http_client_timeout: 4
   http_max_sockets: 20
