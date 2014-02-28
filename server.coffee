@@ -20,7 +20,7 @@ app.configure ->
   app.use express.cookieParser()
   app.use express.bodyParser()
   app.use express.methodOverride()
-  app.use assets( src:'assets' )
+  app.use assets( src:'assets', helperContext: app.locals )
   app.use express.session({
     store:  new RedisStore(config.redis),
     secret: config.session_key,
