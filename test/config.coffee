@@ -1,6 +1,8 @@
 os = require "os"
 
 module.exports =
+  skip_functional_test: false
+
   redis:
     host: process.env.REDIS_IP or "localhost"
     port: process.env.REDIS_PORT or 6379
