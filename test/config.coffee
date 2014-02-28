@@ -1,8 +1,9 @@
 os = require "os"
 
 module.exports =
-  redis_host: process.env.REDIS_IP or "localhost"
-  redis_port: process.env.REDIS_PORT or 6379
+  redis:
+    host: process.env.REDIS_IP or "localhost"
+    port: process.env.REDIS_PORT or 6379
   cache_ttl: 30 * 60
   http_client_timeout: 4
   http_max_sockets: 20
