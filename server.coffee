@@ -22,7 +22,7 @@ app.configure ->
   app.use express.methodOverride()
   app.use assets( src:'assets' )
   app.use express.session({
-    store:  new RedisStore(config.redis_opts),
+    store:  new RedisStore(config.redis),
     secret: config.session_key,
     cookie: {
       secure: false,
